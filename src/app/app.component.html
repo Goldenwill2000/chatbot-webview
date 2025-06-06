@@ -14,7 +14,7 @@
     <p>{{ tabs[0].description }}</p>
     <div class="button-group">
       <button class="btn review">Review</button>
-      <button class="btn confirm">Confirm Order</button>
+      <button class="btn confirm" (click)="confirmOrder()">Confirm Order</button>
     </div>
   </div>
 
@@ -23,10 +23,9 @@
     <p>{{ tabs[1].description }}</p>
     <div class="button-group">
       <button class="btn review">Review</button>
-      <button class="btn confirm">Confirm Order</button>
+      <button class="btn confirm" (click)="confirmOrder()">Confirm Order</button>
     </div>
   </div>
 </div>
-
 
 <router-outlet></router-outlet>
