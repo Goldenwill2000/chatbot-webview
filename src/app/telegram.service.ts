@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class TelegramService {
-  private apiUrl = 'http://localhost:8080/api/telegram/send'; 
+  private apiUrl = 'http://localhost:8081/api/telegram/send'; 
 
   constructor(private http: HttpClient) {}
 
