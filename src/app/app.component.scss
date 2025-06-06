@@ -1,0 +1,71 @@
+ .tabs {
+    max-width: 600px;
+    margin: 2rem auto;
+    font-family: sans-serif;
+  }
+
+  .tab-buttons {
+    display: flex;
+    border-bottom: 2px solid #ccc;
+    cursor: pointer;
+  }
+
+  .tab-button {
+    flex: 1;
+    padding: 1rem;
+    text-align: center;
+    background: #f0f0f0;
+    border: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+  }
+
+  .tab-button.active {
+    background: white;
+    border-bottom: 2px solid #4f46e5;
+    color: #4f46e5;
+  }
+
+  .tab-content {
+    border: 1px solid #ccc;
+    border-top: none;
+    padding: 1.5rem;
+    background: white;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .button-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+
+  .btn {
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+
+  .btn.review {
+    background: #f3f4f6;
+    color: #111827;
+  }
+
+  .btn.review:hover {
+    background: #e5e7eb;
+  }
+
+  .btn.confirm {
+    background: #4f46e5;
+    color: white;
+  }
+
+  .btn.confirm:hover {
+    background: #4338ca;
+  }
