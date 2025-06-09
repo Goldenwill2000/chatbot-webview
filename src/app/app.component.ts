@@ -23,7 +23,7 @@ export class AppComponent {
     confirmOrder() {
     const selectedProduct = this.tabs[this.selectedTab].label;
     const message = `User confirmed order for ${selectedProduct}`;
-    const chatId = 166224553; 
+    const chatId = "1662245531"; 
    this.telegramService.sendMessageToTelegram(chatId, message).subscribe({
   next: () => alert('Message sent to Telegram!'),
   error: err => console.error('Error sending message:', err)
