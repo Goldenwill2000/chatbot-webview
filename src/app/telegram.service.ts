@@ -11,9 +11,6 @@ export class TelegramService {
   constructor(private http: HttpClient) {}
 
   sendMessageToTelegram(chatId: number, message: string): Observable<any> {
-    return this.http.post(this.apiUrl, {
-      chatId,
-      message
-    });
-  }
+  return this.http.post(this.apiUrl, { chatId, message }, { responseType: 'text' as 'json' });
+}
 }
