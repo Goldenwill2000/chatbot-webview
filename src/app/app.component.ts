@@ -24,9 +24,16 @@ export class AppComponent {
     const selectedProduct = this.tabs[this.selectedTab].label;
     const message = `User confirmed order for ${selectedProduct}`;
     const chatId = "1662245531"; 
-   this.telegramService.sendMessageToTelegram(chatId, message).subscribe({
-  next: () => alert('Message sent to Telegram!'),
-  error: err => console.error('Error sending message:', err)
+ this.telegramService.sendMessageToTelegram(chatId, message).subscribe({
+  next: () => {
+    // ✅ Close the Telegram WebApp from the frontend
+    if ((window as any).Telegram?.WebApp) {
+      (window as any).Telegram.WebApp.close();
+    }
+  },
+  error: (err) => {
+    console.error('Failed to send message:', err);
+  }
 });
   }
 }
