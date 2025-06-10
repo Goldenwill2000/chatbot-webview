@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TelegramService } from './telegram.service';
 
 @Component({
@@ -6,10 +6,8 @@ import { TelegramService } from './telegram.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   selectedTab = 0;
-  chatId: string | null = null;
-  firstName: string | null = null;
 
   tabs = [
     { label: 'Product A', description: 'Description for Product A. Review and confirm your order.' },
@@ -18,43 +16,26 @@ export class AppComponent implements OnInit {
 
   constructor(private telegramService: TelegramService) {}
 
- ngOnInit(): void {
-    // Option A: From Telegram Web App context (secure)
-    const tg = (window as any).Telegram?.WebApp;
-    const userInfo = tg?.initDataUnsafe?.user;
-    if (userInfo) {
-      this.firstName = userInfo.first_name;
-      this.chatId = userInfo.id?.toString();  // user.id, not chat.id
-    }
-
-    // Option B: From query string
-    const urlParams = new URLSearchParams(window.location.search);
-    this.chatId = this.chatId || urlParams.get('chatId');
-    this.firstName = this.firstName || urlParams.get('firstName');
-  }
-
   selectTab(index: number) {
     this.selectedTab = index;
   }
 
-  confirmOrder() {
+    confirmOrder() {
     const selectedProduct = this.tabs[this.selectedTab].label;
-    const message = `User ${this.firstName} confirmed order for ${selectedProduct}`;
+    const message = `User confirmed order for ${selectedProduct}`;
+    const chatId = "1662245531"; 
 
-    if (!this.chatId) {
-      console.error("Chat ID not found!");
-      return;
-    }
+    this.telegramService.sendMessageToTelegram(chatId, message).subscribe({
+    next: () => {
 
-    this.telegramService.sendMessageToTelegram(this.chatId, message).subscribe({
-      next: () => {
-        if ((window as any).Telegram?.WebApp) {
-          (window as any).Telegram.WebApp.close();
-        }
-      },
-      error: (err:any) => {
-        console.error('Failed to send message:', err);
+      if ((window as any).Telegram?.WebApp) {
+       
+        (window as any).Telegram.WebApp.close();
       }
+    },
+    error: (err) => {
+      console.error('Failed to send message:', err);
+    }
     });
-  }
+   }
 }

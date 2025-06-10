@@ -8,11 +8,7 @@
       {{ tab.label }}
     </button>
   </div>
-
-  <div class="user-info" *ngIf="firstName && chatId">
-  <p><strong>User:</strong> {{ firstName }}</p>
-  <p><strong>Chat ID:</strong> {{ chatId }}</p>
-</div>
+  
 
   <div class="tab-content" *ngIf="selectedTab === 0">
     <h3>{{ tabs[0].label }}</h3>
@@ -31,8 +27,6 @@
       <button class="btn confirm" (click)="confirmOrder()">Confirm Order</button>
     </div>
   </div>
-
-  <div>v.2.0.0</div>
 </div>
 
 <router-outlet></router-outlet>
