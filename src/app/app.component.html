@@ -9,6 +9,15 @@
     </button>
   </div>
   
+    <div class="user-info" *ngIf="firstName && chatId">
+      <p><strong>User:</strong> {{ firstName }}</p>
+      <p><strong>Chat ID:</strong> {{ chatId }}</p>
+    </div>
+
+
+    <ng-template #loading>
+      <p>Loading user info...</p>
+    </ng-template>
 
   <div class="tab-content" *ngIf="selectedTab === 0">
     <h3>{{ tabs[0].label }}</h3>
